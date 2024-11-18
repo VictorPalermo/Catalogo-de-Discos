@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Disco</title>
+</head>
+<body>
+    <h1> Criar Disco </h1>
+    <form>
+        <label for="titulo">Título do Disco:</label>
+        <input type="text" id="titulo" name="titulo" required>
+
+        <label for="ano">Ano de Lançamento</label>
+        <input type="date" id="ano" name="ano" required>
+
+        <label for="imagem">Selecione uma imagem para o Disco</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
+
+        <label for = "faixa">Faixa para o Disco</label>
+        <select id="faixa" name="faixa" required>
+            <option value="faixa1">faixa1</option>
+            <option value="faixa2">faixa2</option>
+        </select>
+
+        <button type="submit">Criar</button>
+    </form>
+    <a href="/" class="button-link">
+        <button type="button">Voltar</button>
+    </a>
+</body>
+</html>
