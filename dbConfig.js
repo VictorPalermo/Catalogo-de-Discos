@@ -16,7 +16,7 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.passw
 async function initialize() {
     try {
         await sequelize.authenticate();
-        console.log('Conexão com o banco de dados MySQL foi estabelecida com sucesso.');
+        console.log('Conexão com o banco MySQL foi estabelecida');
     } catch (error) {
         console.error('Erro ao conectar com o banco de dados:', error);
         throw error;

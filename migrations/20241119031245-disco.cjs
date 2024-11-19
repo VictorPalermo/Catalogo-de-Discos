@@ -2,8 +2,14 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = {
- up: async (queryInterface) => {
+ up: async (queryInterface, Sequelize) => {
   await queryInterface.createTable('discos', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
     titulo: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,7 +29,7 @@ module.exports = {
 },{
   modelName: 'Disco',
   tableName: 'discos',
-  timestamps: true,
+  timestamps: false,
 });
 },
 
