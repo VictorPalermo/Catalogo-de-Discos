@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Disco</title>
+</head>
+<body>
+    <h1>Editar Disco</h1>
+
+    <form action="/editar-disco/<%= disco.id %>" method="POST" enctype="multipart/form-data">
+        <label for="titulo">Título do Disco:</label>
+        <input type="text" id="titulo" name="titulo" value="<%= disco.titulo %>" required><br><br>
+
+        <label for="ano">Ano:</label>
+        <input type="date" id="ano" name="ano" value="<%= disco.ano %>" required><br><br>
+
+        <label for="faixa">Faixa:</label>
+        <input type="text" id="faixa" name="faixa" value="<%= disco.faixa %>" required><br><br>
+
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" name="imagem"><br><br>
+
+        <button type="submit">Salvar alterações</button>
+    </form>
+
+    <a href="/catalogo">Voltar ao Catálogo</a>
+</body>
+</html>

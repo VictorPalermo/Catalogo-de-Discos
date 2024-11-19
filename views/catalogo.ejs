@@ -64,15 +64,17 @@
                         <% if (item.imagem) { %>
                             <br><img src="<%= item.imagem %>" alt="<%= item.titulo %>" width="100">
                         <% } %>
+                        <a href="/editar-disco/<%= item.id %>">Editar Disco</a>
                     <% } else { %>
                         Artista: <strong><%= item.nome %></strong> - Gênero: <%= item.genero %>
+                        <a href="/editar-artista/<%= item.id %>">Editar Artista</a>
                     <% } %>
                 </li>
             <% }) %>
         </ul>
-        
     <% } else { %>
         <p>Nenhum resultado encontrado.</p>
     <% } %>
+    
 </body>
 </html>
