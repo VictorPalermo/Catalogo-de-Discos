@@ -1,9 +1,16 @@
 const Disco = require('../models/discoModel');
+const path = require('path');
 
 async function criarDisco(req, res) {
     try {
-        const { id, titulo, ano, imagem, faixa } = req.body; 
-        const novoDisco = await Disco.create({id, titulo, ano, imagem, faixa });
+        if (!req.file) {
+            return res.status(400).send('A imagem do disco é obrigatória');
+        }
+        const { titulo, ano, faixa } = req.body;
+        const imagem = '/uploads/' + req.file.filename; 
+
+        const novoDisco = await Disco.create({ titulo, ano, imagem, faixa });
+
         res.redirect('/');
     } catch (error) {
         console.error('Erro ao criar disco:', error);

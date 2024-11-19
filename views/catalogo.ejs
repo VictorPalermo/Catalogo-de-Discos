@@ -4,31 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
+    <script>
+        function atualizarFiltros() {
+            const categoria = document.getElementById('categoria').value;
+            const tituloField = document.getElementById('titulo-field');
+            const nomeField = document.getElementById('nome-field');
+
+            if (categoria === 'disco') {
+                tituloField.style.display = 'block';
+                nomeField.style.display = 'none';
+            } else if (categoria === 'artista') {
+                tituloField.style.display = 'none';
+                nomeField.style.display = 'block';
+            } else {
+                tituloField.style.display = 'none';
+                nomeField.style.display = 'none';
+            }
+        }
+    </script>
 </head>
-<body>
-    <label for = "categoria">Buscar por Artista ou Disco?</label>
-    <select id="categoria" name="categoria" required>
-        <option value="nenhum">Nenhum</option>
-        <option value="disco">Artista</option>
-        <option value="artista">Disco</option>
-    </select>
+<body onload="atualizarFiltros()">
+    <h1>Catálogo</h1>
 
-    <label for = "titulo">Buscar por Título de Disco</label>
-    <select id="titulo" name="titulo" required>
-        <option value="nenhum">Nenhum</option>
-        <option value="ex">exemplo</option>
-    </select>
+    <form action="/catalogo" method="GET">
+        <label for="categoria">Buscar por Artista ou Disco?</label>
+        <select id="categoria" name="categoria" required onchange="atualizarFiltros()">
+            <option value="">Nenhum</option>
+            <option value="artista" <%= categoria === 'artista' ? 'selected' : '' %>>Artista</option>
+            <option value="disco" <%= categoria === 'disco' ? 'selected' : '' %>>Disco</option>
+        </select>
 
-    <label for = "nome">Buscar por Nome do Artista</label>
-    <select id="nome" name="nome" required>
-        <option value="nenhum">Nenhum</option>
-        <option value="ex2">exemplo</option>
-    </select>
+        <div id="titulo-field" style="display: none;">
+            <label for="titulo">Título do Disco:</label>
+            <input type="text" id="titulo" name="titulo" value="<%= titulo || '' %>">
+        </div>
 
-    <label for = "genero">Buscar por Gênero Musical</label>
-    <select id="genero" name="genero" required>
-        <option value="nenhum">Nenhum</option>
-        <option value="ex3">exemplo</option>
-    </select>
+        <div id="nome-field" style="display: none;">
+            <label for="nome">Nome do Artista:</label>
+            <input type="text" id="nome" name="nome" value="<%= nome || '' %>">
+        </div>
+
+        <label for="genero">Buscar por Gênero Musical:</label>
+        <select id="genero" name="genero">
+            <option value="">Nenhum</option>
+            <option value="rock" <%= genero === 'rock' ? 'selected' : '' %>>Rock</option>
+            <option value="pop" <%= genero === 'pop' ? 'selected' : '' %>>Pop</option>
+        </select>
+
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Resultados</h2>
+    <% if (resultados && resultados.length > 0) { %>
+        <ul>
+            <% resultados.forEach(item => { %>
+                <li>
+                    <% if (item.titulo) { %>
+                        Disco: <strong><%= item.titulo %></strong> - Gênero: <%= item.genero %>
+                        <% if (item.imagem) { %>
+                            <br><img src="<%= item.imagem %>" alt="<%= item.titulo %>" width="100">
+                        <% } %>
+                    <% } else { %>
+                        Artista: <strong><%= item.nome %></strong> - Gênero: <%= item.genero %>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+        
+    <% } else { %>
+        <p>Nenhum resultado encontrado.</p>
+    <% } %>
 </body>
 </html>
