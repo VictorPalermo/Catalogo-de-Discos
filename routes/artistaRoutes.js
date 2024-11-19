@@ -25,8 +25,9 @@ router.post('/editar-artista/:id', async (req, res) => {
         const { nome, genero } = req.body;
         const artista = await Artista.findByPk(req.params.id);
         if (artista) {
-            await artista.update({ nome, genero });
-            res.redirect('/'); 
+            const generoFormatado = Array.isArray(genero) ? genero.join(',') : genero;
+            await artista.update({ nome, genero: generoFormatado });
+            res.redirect('/catalogo'); 
         } else {
             res.status(404).send('Artista não encontrado');
         }

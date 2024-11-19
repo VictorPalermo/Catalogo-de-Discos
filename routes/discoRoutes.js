@@ -32,16 +32,18 @@ router.get('/editar-disco/:id', async (req, res) => {
 
 router.post('/editar-disco/:id', upload.single('imagem'), async (req, res) => {
     try {
-        const { titulo, ano, faixa } = req.body;  
+        const { titulo, ano, faixa, genero } = req.body;  
         const disco = await Disco.findByPk(req.params.id);  
         if (disco) {
+            const generoFormatado = Array.isArray(genero) ? genero.join(',') : genero;
             await disco.update({
                 titulo,
                 ano,
                 faixa,
-                imagem: req.file ? '/uploads/' + req.file.filename : disco.imagem  
+                imagem: req.file ? '/uploads/' + req.file.filename : disco.imagem,  
+                genero: generoFormatado
             });
-            res.redirect('/'); 
+            res.redirect('/catalogo'); 
         } else {
             res.status(404).send('Disco não encontrado');  
         }

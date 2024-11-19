@@ -26,6 +26,10 @@ module.exports = {
       type: DataTypes.STRING,
       allowNull: false,
   },
+  genero: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
 },{
   modelName: 'Disco',
   tableName: 'discos',

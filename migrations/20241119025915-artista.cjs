@@ -15,13 +15,14 @@ module.exports = {
       allowNull: false,
   },
   genero: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
   },
   discos: {
       type: DataTypes.STRING,
       allowNull: false,
   },
+  
 
 },{
   modelName: 'Artista',

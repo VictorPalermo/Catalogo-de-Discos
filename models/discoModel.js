@@ -26,6 +26,10 @@ const Disco = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        genero: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
     },
 
     {
