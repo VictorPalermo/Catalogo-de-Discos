@@ -1,12 +1,22 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const { initialize, sequelize } = require('./dbConfig');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-
+async function initializeDatabase() {
+    try {
+        await initialize();
+        await sequelize.sync();
+        console.log("Muito bom, banco de dados MySql conectado e tabelas sincronizadas com sucesso!")
+    } catch (error){
+        console.error('Erro ao iniciar a conexão com o banco de dados,' , error);
+        process.exit(1);
+    }
+}
 
 
 
@@ -28,6 +38,7 @@ app.get('/catalogo', (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.listen(PORT, async () =>{
+    await initializeDatabase();
+    console.log("Perfeito, servidor rodando na porta:" , PORT);
 });
