@@ -19,9 +19,10 @@ module.exports = {
       allowNull: false,
   },
   discos: {
-      type: DataTypes.STRING,
-      allowNull: false,
-  },
+    type: DataTypes.TEXT,
+    allowNull: false,
+    defaultValue: '',
+},
   
 
 },{
@@ -35,3 +36,4 @@ module.exports = {
 await queryInterface.dropTable('artistas')
   }
 };
+  

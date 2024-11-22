@@ -13,9 +13,10 @@
         <input type="text" id="nome" name="nome" required>
 
         <label for = "discos">Discos que participou</label>
-        <select id="discos" name="discos" required>
-            <option value="disco1">disco1</option>
-            <option value="disco2">disco2</option>
+        <select id="discos" name="discos[]" multiple>
+            <% discos.forEach(disco => { %>
+                <option value="<%= disco.id %>"><%= disco.titulo %></option>
+            <% }); %>
         </select>
 
 
@@ -48,7 +49,8 @@
     </form>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
     <script>
-        new MultiSelectTag('genero')  
+        new MultiSelectTag('genero')
+        new MultiSelectTag('discos') 
     </script>
     <a href="/" class="button-link">
         <button type="button">Voltar</button>

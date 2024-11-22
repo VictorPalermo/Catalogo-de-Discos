@@ -47,8 +47,27 @@
         <label for="genero">Buscar por Gênero Musical:</label>
         <select id="genero" name="genero">
             <option value="">Nenhum</option>
-            <option value="rock" <%= genero === 'rock' ? 'selected' : '' %>>Rock</option>
+            <option value="generico" <%= genero === 'generico' ? 'selected' : '' %>>Genérico</option>
+            <option value="blues" <%= genero === 'blues' ? 'selected' : '' %>>Blues</option>
+            <option value="country" <%= genero === 'country' ? 'selected' : '' %>>Contry</option>
+            <option value="disco" <%= genero === 'disco' ? 'selected' : '' %>>Disco</option>
+            <option value="eletronica" <%= genero === 'eletronica' ? 'selected' : '' %>>Eletrônica</option>
+            <option value="funk" <%= genero === 'funk' ? 'selected' : '' %>>Funk</option>
+            <option value="hiphop" <%= genero === 'hiphop' ? 'selected' : '' %>>Hip Hop</option>
+            <option value="indie" <%= genero === 'indie' ? 'selected' : '' %>>Indie</option>
+            <option value="jazz" <%= genero === 'jazz' ? 'selected' : '' %>>Jazz</option>
+            <option value="kpop" <%= genero === 'kpop' ? 'selected' : '' %>>K-pop</option>
+            <option value="metal" <%= genero === 'metal' ? 'selected' : '' %>>Metal</option>
+            <option value="musicaclassica" <%= genero === 'musicaclassica' ? 'selected' : '' %>>Musica Clássica</option>
             <option value="pop" <%= genero === 'pop' ? 'selected' : '' %>>Pop</option>
+            <option value="punk" <%= genero === 'punk' ? 'selected' : '' %>>Punk</option>
+            <option value="reb" <%= genero === 'reb' ? 'selected' : '' %>>R&B</option>
+            <option value="reggae" <%= genero === 'reggae' ? 'selected' : '' %>>Reggae</option>
+            <option value="rock" <%= genero === 'rock' ? 'selected' : '' %>>Rock</option>
+            <option value="samba" <%= genero === 'samba' ? 'selected' : '' %>>Samba</option>
+            <option value="sertanejo" <%= genero === 'sertanejo' ? 'selected' : '' %>>Sertanejo</option>
+            <option value="soul" <%= genero === 'soul' ? 'selected' : '' %>>Soul</option>
+            <option value="trap" <%= genero === 'trap' ? 'selected' : '' %>>Trap</option>
         </select>
 
         <button type="submit">Buscar</button>
@@ -60,13 +79,13 @@
             <% resultados.forEach(item => { %>
                 <li>
                     <% if (item.titulo) { %>
-                        Disco: <strong><%= item.titulo %></strong> - Gênero: <%= item.genero %>
+                        Disco: <strong><%= item.titulo %></strong> - Gênero: <%= item.genero %> - Faixas: <%= item.faixa %> - Ano de Lançamento: <%= item.ano %>
                         <% if (item.imagem) { %>
                             <br><img src="<%= item.imagem %>" alt="<%= item.titulo %>" width="100">
                         <% } %>
                         <a href="/editar-disco/<%= item.id %>">Editar Disco</a>
                     <% } else { %>
-                        Artista: <strong><%= item.nome %></strong> - Gênero: <%= item.genero %>
+                        Artista: <strong><%= item.nome %></strong> - Gênero: <%= item.genero %> - Discos: <%= item.discos %>
                         <a href="/editar-artista/<%= item.id %>">Editar Artista</a>
                     <% } %>
                 </li>

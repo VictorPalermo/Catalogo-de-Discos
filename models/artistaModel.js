@@ -19,8 +19,9 @@ const Artista = sequelize.define(
             allowNull: false,
         },
         discos: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: '',
         },
     },
 

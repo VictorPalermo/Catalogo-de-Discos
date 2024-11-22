@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { criarArtista, editarArtista, verArtista, deletarArtista } = require('../controllers/artistaController');
+const { criarArtista, editarArtista, verArtista, deletarArtista, carregarPaginaArtista } = require('../controllers/artistaController');
 const Artista = require('../models/artistaModel'); 
+
+
+router.get('/artista', carregarPaginaArtista);
 
 
 router.post('/artista', criarArtista);
