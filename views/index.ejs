@@ -4,47 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Discos</title>
+    <link rel="stylesheet" href="/css/index.css">
 
 </head>
 <body>
-    <div class="buttons">
-        <a href="/artista" class="button-link">
-        <button>Criar artista</button>
-    </a>
-    <a href="/disco" class="button-link">
-        <button>Criar disco</button>
-    </a>
-    <a href="/catalogo" class="button-link">
-        <button>Ver catálogo</button>
-    </a>
+    <div class="container">
+        <h1>Catálogo de Discos</h1>
+        <h1>O que deseja fazer?</h1>
+        <div class="buttons">
+            <a href="/artista" class="button-link">
+                <button>Criar Artista</button>
+            </a>
+            <a href="/disco" class="button-link">
+                <button>Criar Disco</button>
+            </a>
+            <a href="/catalogo" class="button-link">
+                <button>Ver Catálogo</button>
+            </a>
+        </div>
     </div>
 </body>
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-    }
 
-    .buttons {
-        display: flex;
-        gap: 10px;
-    }
-
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-
-    button:hover {
-        background-color: #f0f0f0;
-    }
-</style>
 </html>

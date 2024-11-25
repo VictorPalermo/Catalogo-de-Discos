@@ -73,8 +73,8 @@ const Disco = require('../models/discoModel');
 
 async function carregarPaginaArtista(req, res) {
     try {
-        const discos = await Disco.findAll(); // Busca todos os discos
-        res.render('artista', { discos }); // Envia os discos para a view
+        const discos = await Disco.findAll();
+        res.render('artista', { discos }); 
     } catch (error) {
         console.error('Erro ao carregar discos:', error);
         res.status(500).send('Erro ao carregar a página de criação de artista.');

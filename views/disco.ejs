@@ -4,57 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Disco</title>
+    <link rel="stylesheet" href="/css/disco.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
 </head>
 <body>
-    <h1> Criar Disco </h1>
-    <form action="/disco" method="POST" enctype="multipart/form-data">
-        <label for="titulo">Título do Disco:</label>
-        <input type="text" id="titulo" name="titulo" required>
+    <div class="container">
+        <h1>Criar Disco</h1>
+        <form action="/disco" method="POST" enctype="multipart/form-data">
+            <label for="titulo">Título do Disco</label>
+            <input type="text" id="titulo" name="titulo" required>
 
-        <label for="ano">Ano de Lançamento</label>
-        <input type="date" id="ano" name="ano" required>
+            <label for="ano">Ano de Lançamento</label>
+            <input type="date" id="ano" name="ano" required>
 
-        <label for="imagem">Selecione uma imagem para o Disco</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*" required>
+            <label for="imagem">Selecione uma imagem para o Disco</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
-        <label for = "faixa">Escreva as Faixas do Disco</label>
-        <input type ="text id="faixa" name="faixa" required>
-    
-        </select>
-        <label for = "genero">Gênero Musical do Disco</label>
-        <select id="genero" name="genero[]" multiple required>
-            <option value="generico">Genérico</option>
-            <option value="blues">Blues</option>
-            <option value="country">Country</option>
-            <option value="disco">Disco</option>
-            <option value="eletronica">Eletrônica</option>
-            <option value="funk">Funk</option>
-            <option value="hiphop">Hip Hop</option>
-            <option value="indie">Indie</option>
-            <option value="jazz">Jazz</option>
-            <option value="kpop">K-pop</option>
-            <option value="metal">Metal</option>
-            <option value="musicaclassica">Música Clássica</option>
-            <option value="pop">Pop</option>
-            <option value="punk">Punk</option>
-            <option value="reb">R&B</option>
-            <option value="reggae">Reggae</option>
-            <option value="rock">Rock</option>
-            <option value="samba">Samba</option>
-            <option value="sertanejo">Sertanejo</option>
-            <option value="soul">Soul</option>
-            <option value="trap">Trap</option>
-        </select>
+            <label for="faixa">Escreva as Faixas do Disco</label>
+            <input type="text" id="faixa" name="faixa" required>
+            <p>Gênero Musical do Disco</p>
+            <div class="form-genero">
+            <label for="genero"></label>
+            <select id="genero" name="genero[]" multiple required>
+                <option value="Genérico">Genérico</option>
+                <option value="Blues">Blues</option>
+                <option value="Country">Country</option>
+                <option value="Disco">Disco</option>
+                <option value="Eletrônica">Eletrônica</option>
+                <option value="Funk">Funk</option>
+                <option value="Hip Hop">Hip Hop</option>
+                <option value="Indie">Indie</option>
+                <option value="Jazz">Jazz</option>
+                <option value="K-pop">K-pop</option>
+                <option value="Metal">Metal</option>
+                <option value="Música Clássica">Música Clássica</option>
+                <option value="Pop">Pop</option>
+                <option value="Punk">Punk</option>
+                <option value="R&B">R&B</option>
+                <option value="reggae">Reggae</option>
+                <option value="Rock">Rock</option>
+                <option value="Samba">Samba</option>
+                <option value="Sertanejo">Sertanejo</option>
+                <option value="Soul">Soul</option>
+                <option value="Trap">Trap</option>
+            </select>
+        </div>
+            <button type="submit">Criar</button>
+        </form>
+        <a href="/" class="button-link">
+            <button type="button">Voltar</button>
+        </a>
+    </div>
 
-        <button type="submit">Criar</button>
-    </form>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
     <script>
-        new MultiSelectTag('genero')  
+        new MultiSelectTag('genero');
     </script>
-    <a href="/" class="button-link">
-        <button type="button">Voltar</button>
-    </a>
 </body>
 </html>

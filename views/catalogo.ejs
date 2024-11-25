@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
+    <link rel="stylesheet" href="/css/catalogo.css">
     <script>
         function atualizarFiltros() {
             const categoria = document.getElementById('categoria').value;
@@ -47,27 +48,27 @@
         <label for="genero">Buscar por Gênero Musical:</label>
         <select id="genero" name="genero">
             <option value="">Nenhum</option>
-            <option value="generico" <%= genero === 'generico' ? 'selected' : '' %>>Genérico</option>
-            <option value="blues" <%= genero === 'blues' ? 'selected' : '' %>>Blues</option>
-            <option value="country" <%= genero === 'country' ? 'selected' : '' %>>Contry</option>
-            <option value="disco" <%= genero === 'disco' ? 'selected' : '' %>>Disco</option>
-            <option value="eletronica" <%= genero === 'eletronica' ? 'selected' : '' %>>Eletrônica</option>
-            <option value="funk" <%= genero === 'funk' ? 'selected' : '' %>>Funk</option>
-            <option value="hiphop" <%= genero === 'hiphop' ? 'selected' : '' %>>Hip Hop</option>
-            <option value="indie" <%= genero === 'indie' ? 'selected' : '' %>>Indie</option>
-            <option value="jazz" <%= genero === 'jazz' ? 'selected' : '' %>>Jazz</option>
-            <option value="kpop" <%= genero === 'kpop' ? 'selected' : '' %>>K-pop</option>
-            <option value="metal" <%= genero === 'metal' ? 'selected' : '' %>>Metal</option>
-            <option value="musicaclassica" <%= genero === 'musicaclassica' ? 'selected' : '' %>>Musica Clássica</option>
-            <option value="pop" <%= genero === 'pop' ? 'selected' : '' %>>Pop</option>
-            <option value="punk" <%= genero === 'punk' ? 'selected' : '' %>>Punk</option>
-            <option value="reb" <%= genero === 'reb' ? 'selected' : '' %>>R&B</option>
-            <option value="reggae" <%= genero === 'reggae' ? 'selected' : '' %>>Reggae</option>
-            <option value="rock" <%= genero === 'rock' ? 'selected' : '' %>>Rock</option>
-            <option value="samba" <%= genero === 'samba' ? 'selected' : '' %>>Samba</option>
-            <option value="sertanejo" <%= genero === 'sertanejo' ? 'selected' : '' %>>Sertanejo</option>
-            <option value="soul" <%= genero === 'soul' ? 'selected' : '' %>>Soul</option>
-            <option value="trap" <%= genero === 'trap' ? 'selected' : '' %>>Trap</option>
+            <option value="Genérico" <%= genero === 'generico' ? 'selected' : '' %>>Genérico</option>
+            <option value="Blues" <%= genero === 'blues' ? 'selected' : '' %>>Blues</option>
+            <option value="Country" <%= genero === 'country' ? 'selected' : '' %>>Contry</option>
+            <option value="Disco" <%= genero === 'disco' ? 'selected' : '' %>>Disco</option>
+            <option value="Eletrônica" <%= genero === 'eletronica' ? 'selected' : '' %>>Eletrônica</option>
+            <option value="Funk" <%= genero === 'funk' ? 'selected' : '' %>>Funk</option>
+            <option value="Hip Hop" <%= genero === 'hiphop' ? 'selected' : '' %>>Hip Hop</option>
+            <option value="Indie" <%= genero === 'indie' ? 'selected' : '' %>>Indie</option>
+            <option value="Jazz" <%= genero === 'jazz' ? 'selected' : '' %>>Jazz</option>
+            <option value="K-pop" <%= genero === 'kpop' ? 'selected' : '' %>>K-pop</option>
+            <option value="Metal" <%= genero === 'metal' ? 'selected' : '' %>>Metal</option>
+            <option value="Musica Clássica" <%= genero === 'musicaclassica' ? 'selected' : '' %>>Musica Clássica</option>
+            <option value="Pop" <%= genero === 'pop' ? 'selected' : '' %>>Pop</option>
+            <option value="Punk" <%= genero === 'punk' ? 'selected' : '' %>>Punk</option>
+            <option value="R&B" <%= genero === 'reb' ? 'selected' : '' %>>R&B</option>
+            <option value="Reggae" <%= genero === 'reggae' ? 'selected' : '' %>>Reggae</option>
+            <option value="Rock" <%= genero === 'rock' ? 'selected' : '' %>>Rock</option>
+            <option value="Samba" <%= genero === 'samba' ? 'selected' : '' %>>Samba</option>
+            <option value="Sertanejo" <%= genero === 'sertanejo' ? 'selected' : '' %>>Sertanejo</option>
+            <option value="Soul" <%= genero === 'soul' ? 'selected' : '' %>>Soul</option>
+            <option value="Trap" <%= genero === 'trap' ? 'selected' : '' %>>Trap</option>
         </select>
 
         <button type="submit">Buscar</button>
@@ -77,20 +78,38 @@
     <% if (resultados && resultados.length > 0) { %>
         <ul>
             <% resultados.forEach(item => { %>
-                <li>
-                    <% if (item.titulo) { %>
-                        Disco: <strong><%= item.titulo %></strong> - Gênero: <%= item.genero %> - Faixas: <%= item.faixa %> - Ano de Lançamento: <%= item.ano %>
-                        <% if (item.imagem) { %>
-                            <br><img src="<%= item.imagem %>" alt="<%= item.titulo %>" width="100">
+                <li class="resultado-item">
+                    <div class="resultado-info">
+                        <% if (item.titulo) { %>
+                            <div class="disco">
+                                <strong>Disco:</strong> <%= item.titulo %>
+                            </div>
+                            <div class="detalhes">
+                                <span><strong>Gênero:</strong> <%= item.genero %></span>
+                                <span><strong>Faixas:</strong> <%= item.faixa %></span>
+                                <span><strong>Ano de Lançamento:</strong> <%= item.ano %></span>
+                            </div>
+                            <% if (item.imagem) { %>
+                                <div class="imagem">
+                                    <img src="<%= item.imagem %>" alt="<%= item.titulo %>">
+                                </div>
+                            <% } %>
+                            <a href="/editar-disco/<%= item.id %>" class="editar-link">Editar Disco</a>
+                        <% } else { %>
+                            <div class="artista">
+                                <strong>Artista:</strong> <%= item.nome %>
+                            </div>
+                            <div class="detalhes">
+                                <span><strong>Gênero:</strong> <%= item.genero %></span>
+                                <span><strong>Discos:</strong> <%= item.discos %></span>
+                            </div>
+                            <a href="/editar-artista/<%= item.id %>" class="editar-link">Editar Artista</a>
                         <% } %>
-                        <a href="/editar-disco/<%= item.id %>">Editar Disco</a>
-                    <% } else { %>
-                        Artista: <strong><%= item.nome %></strong> - Gênero: <%= item.genero %> - Discos: <%= item.discos %>
-                        <a href="/editar-artista/<%= item.id %>">Editar Artista</a>
-                    <% } %>
+                    </div>
                 </li>
             <% }) %>
         </ul>
+        
     <% } else { %>
         <p>Nenhum resultado encontrado.</p>
     <% } %>

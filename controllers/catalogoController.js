@@ -18,7 +18,7 @@ async function buscarCatalogo(req, res) {
                 }
             });
         } else if (categoria === 'artista') {
-            resultados = await Artista.findAll({
+            const artistas = await Artista.findAll({
                 where: {
                     [Op.and]: [
                         nome ? { nome: { [Op.like]: `%${nome}%` } } : {},
@@ -26,11 +26,39 @@ async function buscarCatalogo(req, res) {
                     ]
                 }
             });
+
+            const discos = await Disco.findAll();
+            const mapaDiscos = discos.reduce((mapa, disco) => {
+                mapa[disco.id] = disco.titulo;
+                return mapa;
+            }, {});
+
+            resultados = artistas.map(artista => {
+                const idsDiscos = artista.discos.split(',');
+                const titulosDiscos = idsDiscos.map(id => mapaDiscos[id] || 'Nenhum');
+                return {
+                    ...artista.toJSON(),
+                    discos: titulosDiscos.join(', ')
+                };
+            });
         } else {
-            resultados = [
-                ...await Disco.findAll(),
-                ...await Artista.findAll()
-            ];
+            const discos = await Disco.findAll();
+            const artistas = await Artista.findAll();
+            const mapaDiscos = discos.reduce((mapa, disco) => {
+                mapa[disco.id] = disco.titulo;
+                return mapa;
+            }, {});
+
+            const artistasFormatados = artistas.map(artista => {
+                const idsDiscos = artista.discos.split(',');
+                const titulosDiscos = idsDiscos.map(id => mapaDiscos[id] || 'Nenhum');
+                return {
+                    ...artista.toJSON(),
+                    discos: titulosDiscos.join(', ')
+                };
+            });
+
+            resultados = [...discos, ...artistasFormatados];
         }
 
         res.render('catalogo', { resultados, categoria, titulo, nome, genero });
@@ -40,4 +68,9 @@ async function buscarCatalogo(req, res) {
     }
 }
 
-module.exports = { buscarCatalogo };
+
+
+
+
+
+module.exports = { buscarCatalogo};
